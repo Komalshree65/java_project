@@ -1,0 +1,38 @@
+import java.util.*;
+
+public class ExamSeatingArrangement {
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("Enter the number of students: ");
+        int numStudents = sc.nextInt();
+        
+        System.out.println("Enter the number of rows: ");
+        int numRows = sc.nextInt();
+        
+        System.out.println("Enter the number of seats per row: ");
+        int numSeatsPerRow = sc.nextInt();
+        
+        int totalSeats = numRows * numSeatsPerRow;
+        int numExams = (int) Math.ceil((double) numStudents / totalSeats);
+        
+        System.out.println("Number of exams: " + numExams);
+        
+        for (int i = 1; i <= numExams; i++) {
+            System.out.println("Exam " + i + " seating arrangement:");
+            for (int j = 1; j <= numRows; j++) {
+                for (int k = 1; k <= numSeatsPerRow; k++) {
+                    int seatNum = (j - 1) * numSeatsPerRow + k;
+                    int studentNum = (i - 1) * totalSeats + seatNum;
+                    if (studentNum <= numStudents) {
+                        System.out.println("Seat " + seatNum + " in Row " + j + " is assigned to Student " + studentNum);
+                    }
+                }
+            }
+            System.out.println();
+        }
+        
+        sc.close();
+    }
+}
